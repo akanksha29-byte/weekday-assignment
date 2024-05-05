@@ -1,20 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import { Typography } from "@mui/material";
-import { getCurrencyType } from "../util";
+import { getCurrencyType, truncateText } from "../util";
 import { CardComponentProps } from "../types";
 
 const Cards: React.FC<CardComponentProps> = (props) => {
   const { data, onClickApplyLink } = props;
 
+  const [expand, setExpand] = useState(false);
+
   const getExpComponent = (minExp: number, maxExp: number) => {
     if (minExp && maxExp) {
       return (
         <div className="mt-10">
-          <Typography className="md-text">
+          <Typography className="md-text sub-title">
             Experience: {`${minExp}-${maxExp} years`}
           </Typography>
         </div>
@@ -22,7 +24,7 @@ const Cards: React.FC<CardComponentProps> = (props) => {
     } else if (minExp) {
       return (
         <div className="mt-10">
-          <Typography className="md-text">
+          <Typography className="md-text sub-title">
             Minimum Experience: {`${minExp} years`}
           </Typography>
         </div>
@@ -30,7 +32,7 @@ const Cards: React.FC<CardComponentProps> = (props) => {
     } else if (maxExp) {
       return (
         <div className="mt-10">
-          <Typography className="md-text">
+          <Typography className="md-text sub-title">
             Maximum Experience: {`${maxExp} years`}
           </Typography>
         </div>
@@ -47,6 +49,8 @@ const Cards: React.FC<CardComponentProps> = (props) => {
     return "-";
   };
 
+  const truncate = truncateText(data?.jobDetailsFromCompany, 350);
+
   return (
     <Card className="card-container">
       <CardContent>
@@ -62,19 +66,48 @@ const Cards: React.FC<CardComponentProps> = (props) => {
         <div className="description">
           <Typography className="sub-title mt-10">
             Estimated Salary: {getCurrencyType(data?.salaryCurrencyCode)}
-            {` ${getSalary(data?.minJdSalary, data?.maxJdSalary)}`}
+            {` ${getSalary(data?.minJdSalary, data?.maxJdSalary)}`} ✅
           </Typography>
           <Typography variant="h6" className="lg-text mt-10">
             About Company:
           </Typography>
-          <Typography>About us</Typography>
-          <Typography variant="body2">
-            {data?.jobDetailsFromCompany.substring(0, 350)}
+          <Typography className="font-weight-bold md-text">About us</Typography>
+          <Typography
+            variant="body2"
+            className="card-description-container mt-5"
+          >
+            {expand ? (
+              <span>
+                {data?.jobDetailsFromCompany}{" "}
+                <span
+                  role="presentation"
+                  className="read-more-btn"
+                  onClick={() => {
+                    setExpand(!expand);
+                  }}
+                >
+                  Show Less
+                </span>
+              </span>
+            ) : (
+              <span>
+                {truncate?.str}{" "}
+                <span
+                  role="presentation"
+                  className="read-more-btn"
+                  onClick={() => {
+                    setExpand(!expand);
+                  }}
+                >
+                  Read More
+                </span>
+              </span>
+            )}
           </Typography>
         </div>
         {getExpComponent(data?.minExp, data?.maxExp)}
         {data?.location && (
-          <Typography className="md-text mt-10 text-transform-cap">
+          <Typography className="md-text mt-10 text-transform-cap sub-title">
             Location: {data?.location}
           </Typography>
         )}
@@ -86,7 +119,7 @@ const Cards: React.FC<CardComponentProps> = (props) => {
           variant="contained"
           onClick={() => onClickApplyLink(data?.jdLink)}
         >
-          Easy Apply
+          ⚡ Easy Apply
         </Button>
       </CardActions>
     </Card>

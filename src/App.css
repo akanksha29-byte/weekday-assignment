@@ -1,23 +1,27 @@
 .app-container {
-  padding: 20px 30px;
+  margin-bottom: 60px;
+}
+
+.header-component {
+  width: 100%;
+  font-size: var(--3xl-text);
+  font-weight: var(--font-weight-800);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px 0px;
+  height: 60px;
+  padding: 20px 0px 0px 20px;
 }
 
 .main-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100%;
+  padding: 0px 30px;
 }
 
 .cards-container {
-  /* display: grid;
-  grid-template-columns: repeat(auto-fit, 31%);
-  gap: 40px; */
   display: flex;
   align-items: center;
   justify-content: flex-start;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 50px;
   margin-top: 40px;
 }
 
@@ -26,8 +30,8 @@
   box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 4px 0px !important;
   padding: 20px 10px;
   position: relative;
-  flex-basis: 29%;
-  height: 450px;
+  flex-basis: 30%;
+  height: 550px;
 }
 
 .card-action-container {
@@ -52,6 +56,17 @@
   width: 40px;
   object-fit: fill;
   margin-right: 20px;
+}
+
+.card-description-container {
+  height: 240px;
+  font-size: var(--sm-text) !important;
+  text-align: justify;
+}
+
+.read-more-btn {
+  text-decoration: underline;
+  color: var(--color-blue);
 }
 
 .title {
@@ -136,7 +151,7 @@
 
 /* common styles */
 .font-weight-bold {
-  font-weight: var(--font-weight-800);
+  font-weight: var(--font-weight-800) !important;
 }
 
 .mt-10 {

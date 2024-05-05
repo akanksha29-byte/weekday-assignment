@@ -4,6 +4,8 @@
   --btn-primary: rgb(85, 239, 196);
   --text-color: rgb(0, 0, 0);
   --text-grey: #8b8b8b;
+  --color-blue: #00b4d8;
+  --3xl-text: 20px;
   --lg-text: 16px;
   --md-text: 14px;
   --sm-text: 13px;
@@ -20,9 +22,16 @@
 
 * {
   font-family: "Nunito Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* to override font-family in typrography */
 .MuiTypography-root {
   font-family: "Nunito Sans", sans-serif !important;
+}
+
+.css-1r4amj5-MuiAutocomplete-root .MuiOutlinedInput-root {
+  padding: 0;
 }

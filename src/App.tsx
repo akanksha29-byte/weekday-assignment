@@ -121,8 +121,8 @@ function App() {
 
   return (
     <div className="app-container">
+      <div className="header-component">👋 User</div>
       <FilterComponent onSetFilterValue={handleSetFilterValue} />
-
       {getMainComponent()}
     </div>
   );
