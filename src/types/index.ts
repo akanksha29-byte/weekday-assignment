@@ -25,9 +25,13 @@ export interface FetchJDListRequestPayload {
 
 export interface JDListApiResponse extends InitialState {}
 
-export interface CardsComponentProps {
-  data: JDlist[];
+export interface CommonProps {
+  onClickApplyLink: (link: string) => void;
 }
-export interface CardComponentProps {
+export interface CardsComponentProps extends CommonProps {
+  data: JDlist[];
+  observerRef: React.LegacyRef<HTMLDivElement> | undefined;
+}
+export interface CardComponentProps extends CommonProps {
   data: JDlist;
 }

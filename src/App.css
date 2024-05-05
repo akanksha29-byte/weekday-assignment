@@ -1,13 +1,44 @@
+.app-container {
+  padding: 20px 30px;
+}
+
 .main-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, 30%);
-  gap: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.cards-container {
+  /* display: grid;
+  grid-template-columns: repeat(auto-fit, 31%);
+  gap: 40px; */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-top: 40px;
 }
 
 .card-container {
-  border-radius: 16px !important;
+  border-radius: 20px !important;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 4px 0px !important;
   padding: 20px 10px;
+  position: relative;
+  flex-basis: 29%;
+  height: 450px;
+}
+
+.card-action-container {
+  position: absolute;
+  bottom: 10px;
+  width: 90%;
+}
+
+.card-container:hover {
+  transform: scale(102%);
+  transition: all 0.7s;
 }
 
 .card-header {
@@ -17,19 +48,72 @@
 }
 
 .card-header .logo img {
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
   object-fit: fill;
   margin-right: 20px;
+}
+
+.title {
+  font-size: var(--sm-text) !important;
+  font-weight: var(--font-weight-800) !important;
+  color: var(--text-grey);
+}
+
+.sub-title {
+  font-size: var(--md-text) !important;
+  color: var(--text-grey);
+  font-size: var(--sm-text);
+  text-transform: capitalize;
+  font-weight: var(--font-weight-400);
 }
 
 .easy-apply-btn {
   width: 100%;
   bottom: 0;
-  background-color: var(---btn-primary) !important;
-  border: 1px solid var(---btn-primary);
+  background-color: var(--btn-primary) !important;
+  border: 1px solid var(--btn-primary);
   color: rgb(0, 0, 0) !important;
   padding: 8px 18px !important;
   border-radius: 8px !important;
-  height: 40px;
+  height: 45px;
+}
+
+.filter-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 30px;
+}
+
+.filter-container .select-filter {
+  margin-right: 10px;
+}
+
+.mt-10 {
+  margin-top: 10px !important;
+}
+
+.mt-15 {
+  margin-top: 15px !important;
+}
+
+.xs-text {
+  font-size: var(--xs-text) !important;
+}
+
+.sm-text {
+  font-size: var(--sm-text) !important;
+}
+
+.md-text {
+  font-size: var(--md-text) !important;
+}
+
+.lg-text {
+  font-size: var(--lg-text) !important;
+}
+
+.text-transform-cap {
+  text-transform: capitalize;
 }
