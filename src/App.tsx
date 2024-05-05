@@ -1,12 +1,17 @@
-import './App.css';
-import { useGetJDListQuery } from './store/jdListApi';
+import CardsComponent from "./components/Cards";
+import { useGetJDListQuery } from "./store/jdListApi";
+import "./App.css";
 
 function App() {
-  const data = useGetJDListQuery({ payload: { limit: 10, offset: 0 } });
-  
+  const { data, isLoading, isError } = useGetJDListQuery({
+    payload: { limit: 10, offset: 0 },
+  });
+
   return (
-    <div>Hello</div>
-  )
+    <div>
+      <CardsComponent data={data?.jdList || []} />
+    </div>
+  );
 }
 
 export default App;

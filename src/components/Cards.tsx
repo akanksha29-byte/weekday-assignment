@@ -1,9 +1,16 @@
-import React from 'react'
+import React from "react";
+import Card from "./Card";
+import { CardsComponentProps } from "../types";
 
-const Cards = () => {
+const CardsComponent: React.FC<CardsComponentProps> = (props) => {
+  const { data } = props;
   return (
-    <div>Cards</div>
-  )
-}
+    <div className="main-container">
+      {data?.map((job, index) => (
+        <Card key={`card-${index + 1}`} data={job} />
+      ))}
+    </div>
+  );
+};
 
-export default Cards;
+export default CardsComponent;

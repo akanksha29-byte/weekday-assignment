@@ -1,0 +1,35 @@
+.main-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 30%);
+  gap: 20px;
+}
+
+.card-container {
+  border-radius: 16px !important;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 4px 0px !important;
+  padding: 20px 10px;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.card-header .logo img {
+  height: 50px;
+  width: 50px;
+  object-fit: fill;
+  margin-right: 20px;
+}
+
+.easy-apply-btn {
+  width: 100%;
+  bottom: 0;
+  background-color: var(---btn-primary) !important;
+  border: 1px solid var(---btn-primary);
+  color: rgb(0, 0, 0) !important;
+  padding: 8px 18px !important;
+  border-radius: 8px !important;
+  height: 40px;
+}

@@ -1,11 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { jobApi } from './jdListApi';
+import { configureStore } from "@reduxjs/toolkit";
+import { jobApi } from "./jdListApi";
 
 export const store = configureStore({
-    reducer: {
-       [jobApi.reducerPath]: jobApi.reducer,
-    },
-    middleware: (getDefaultMiddleware) =>
+  reducer: {
+    [jobApi.reducerPath]: jobApi.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(jobApi.middleware),
 });
 
