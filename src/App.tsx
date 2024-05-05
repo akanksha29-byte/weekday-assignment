@@ -1,11 +1,12 @@
-import './App.css'
+import './App.css';
+import { useGetJDListQuery } from './store/jdListApi';
 
 function App() {
+  const data = useGetJDListQuery({ payload: { limit: 10, offset: 0 } });
+  
   return (
-    <>
-      Test 
-    </>
+    <div>Hello</div>
   )
 }
 
-export default App
+export default App;
