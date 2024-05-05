@@ -3,6 +3,8 @@ import { useGetJDListQuery } from "./store/jdListApi";
 import { INITIAL_STATE } from "./constants";
 import CardsComponent from "./components/Cards";
 import FilterComponent from "./components/FilterSection";
+import NoDataFoundComponent from "./components/NoDataFound";
+import Loader from "./components/Loader";
 import "./App.css";
 import { JDlist } from "./types";
 
@@ -76,7 +78,7 @@ function App() {
 
       if (filter?.minBasePay) {
         jdListData = jdListData?.filter(
-          (jd) => parseInt(filter?.minBasePay, 10) <= (jd?.minJdSalary || 0)
+          (jd) => parseInt(filter?.minBasePay, 10) >= jd?.minJdSalary
         );
       }
 
@@ -97,14 +99,31 @@ function App() {
     return jdListData;
   };
 
+  const getMainComponent = () => {
+    const filteredData = getFilterData(data?.jdList || []);
+    if (isLoading) {
+      return <Loader />;
+    }
+
+    if (!filteredData?.length) {
+      return <NoDataFoundComponent />;
+    }
+    return (
+      <>
+        <CardsComponent
+          observerRef={observerRef}
+          data={filteredData}
+          onClickApplyLink={handleClickApplyLink}
+        />
+      </>
+    );
+  };
+
   return (
     <div className="app-container">
       <FilterComponent onSetFilterValue={handleSetFilterValue} />
-      <CardsComponent
-        observerRef={observerRef}
-        data={getFilterData(data?.jdList || [])}
-        onClickApplyLink={handleClickApplyLink}
-      />
+
+      {getMainComponent()}
     </div>
   );
 }

@@ -90,12 +90,65 @@
   margin-right: 10px;
 }
 
+/* styles for no data found component */
+.no-data-found-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.no-data-found-img {
+  height: 150px;
+  width: 150px;
+}
+
+/* loader styles */
+
+.loader-main-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  margin-top: 100px;
+}
+
+.inner-loader {
+  border: 10px solid;
+  border-color: transparent var(--btn-primary) transparent var(--btn-primary);
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+  animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* common styles */
+.font-weight-bold {
+  font-weight: var(--font-weight-800);
+}
+
 .mt-10 {
   margin-top: 10px !important;
 }
 
 .mt-15 {
   margin-top: 15px !important;
+}
+
+.mt-20 {
+  margin-top: 20px !important;
 }
 
 .xs-text {
