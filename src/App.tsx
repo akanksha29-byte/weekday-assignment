@@ -1,51 +1,47 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useGetJDListQuery } from "./store/jdListApi";
 import { INITIAL_STATE } from "./constants";
 import CardsComponent from "./components/Cards";
 import FilterComponent from "./components/FilterSection";
 import NoDataFoundComponent from "./components/NoDataFound";
 import Loader from "./components/Loader";
+import { lazyLoadOnScroll } from "./util";
+// import { useDispatch } from "react-redux";
+// import { setJDList } from "./store/jdListSlice";
 import "./App.css";
 import { JDlist } from "./types";
 
 function App() {
-  const observerRef = useRef(null);
+  // const dispatch = useDispatch();
 
   const [filter, setFilter] = useState(INITIAL_STATE);
   const [pagination, setPagination] = useState({ limit: 10, offset: 0 });
 
   const { data, isLoading, isError } = useGetJDListQuery({
-    payload: pagination,
+    limit: pagination?.limit,
+    offset: pagination?.offset,
   });
 
-  useEffect(() => {
-    const hasMore = (data?.totalCount || 0) > (data?.jdList?.length || 0);
-    if (isLoading) return;
+  // useEffect(() => {
+  //   if (!isLoading && data) {
+  //     // Dispatch setJDList action to append new data
+  //     dispatch(setJDList(data));
+  //   }
+  // }, [data, isLoading, dispatch]);
 
-    console.log("Creating IntersectionObserver");
+  const updatePaginationData = () => {
+    setPagination((prev) => ({
+      ...prev,
+      offset: prev.offset + 1,
+    }));
+  };
 
-    console.log(hasMore);
-
-    const observer = new IntersectionObserver((entries) => {
-      console.log("Intersection observed:", entries);
-      if (entries[0]?.isIntersecting && hasMore) {
-        console.log("Intersection observed and has more data, calling API");
-        // Call your API here
-      }
-    });
-
-    if (observerRef.current) {
-      console.log("Start observing");
-      observer.observe(observerRef.current);
-    }
-
-    return () => {
-      if (observerRef.current) {
-        console.log("Stop observing");
-        observer.unobserve(observerRef.current);
-      }
-    };
-  }, [data, isLoading, observerRef.current]);
+  const lastRef = lazyLoadOnScroll(
+    data?.totalCount || 0,
+    data?.jdList?.length || 0,
+    isLoading,
+    updatePaginationData
+  );
 
   const handleClickApplyLink = (link: string) => {
     window.open(link);
@@ -111,7 +107,7 @@ function App() {
     return (
       <>
         <CardsComponent
-          observerRef={observerRef}
+          observerRef={lastRef}
           data={filteredData}
           onClickApplyLink={handleClickApplyLink}
         />

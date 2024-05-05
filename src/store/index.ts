@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { jobApi } from "./jdListApi";
+import jdReducer from "./jdListSlice";
 
 export const store = configureStore({
   reducer: {
+    jdReducer: jdReducer,
     [jobApi.reducerPath]: jobApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

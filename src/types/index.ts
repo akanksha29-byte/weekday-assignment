@@ -27,10 +27,10 @@ export interface JDListApiResponse extends InitialState {}
 
 export interface CommonProps {
   onClickApplyLink: (link: string) => void;
+  observerRef: React.LegacyRef<HTMLDivElement> | undefined;
 }
 export interface CardsComponentProps extends CommonProps {
   data: JDlist[];
-  observerRef: React.LegacyRef<HTMLDivElement> | undefined;
 }
 export interface CardComponentProps extends CommonProps {
   data: JDlist;

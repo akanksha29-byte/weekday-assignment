@@ -10,11 +10,13 @@ const jdListSlice = createSlice({
   name: "jdListSlice",
   reducerPath: "jdListReducer",
   reducers: {
-    setJDList: (state, action: PayloadAction<JDListApiResponse>) => ({
-      ...state,
-      jdList: [...state.jdList, ...action?.payload?.jdList],
-      totalCount: action?.payload?.totalCount,
-    }),
+    setJDList: (state, action: PayloadAction<JDListApiResponse>) => {
+      return {
+        ...state,
+        jdList: [...state.jdList, ...action?.payload?.jdList],
+        totalCount: action?.payload?.totalCount,
+      };
+    },
   },
   initialState,
 });

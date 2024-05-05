@@ -35,7 +35,9 @@ const FilterSection: React.FC<FilterSectionComponentProps> = (props) => {
         options={SELECT_EXPERIENCE}
         sx={{ width: 220 }}
         className="select-filter"
-        renderInput={(params) => <TextField {...params} label="Experience" />}
+        renderInput={(params) => (
+          <TextField {...params} label="Min. Experience" />
+        )}
         onInputChange={(event, newInputValue) => {
           const value = SELECT_EXPERIENCE?.find(
             (item) => item?.label === newInputValue
