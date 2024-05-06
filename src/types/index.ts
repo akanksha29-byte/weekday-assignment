@@ -16,6 +16,9 @@ export interface JDlist {
 export interface InitialState {
   jdList: JDlist[];
   totalCount: number;
+  isLoading: boolean;
+  error: string;
+  success: string;
 }
 
 export interface FetchJDListRequestPayload {

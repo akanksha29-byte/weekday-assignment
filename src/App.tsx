@@ -1,33 +1,31 @@
 import { useEffect, useState } from "react";
-import { useGetJDListQuery } from "./store/jdListApi";
 import { INITIAL_STATE } from "./constants";
 import CardsComponent from "./components/Cards";
 import FilterComponent from "./components/FilterSection";
 import NoDataFoundComponent from "./components/NoDataFound";
 import Loader from "./components/Loader";
 import { lazyLoadOnScroll } from "./util";
-// import { useDispatch } from "react-redux";
-// import { setJDList } from "./store/jdListSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchJdList } from "./store/jdListSlice";
+import { RootState } from "./store";
 import "./App.css";
 import { JDlist } from "./types";
 
 function App() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const [filter, setFilter] = useState(INITIAL_STATE);
   const [pagination, setPagination] = useState({ limit: 10, offset: 0 });
 
-  const { data, isLoading, isError } = useGetJDListQuery({
-    limit: pagination?.limit,
-    offset: pagination?.offset,
-  });
+  const {
+    isLoading,
+    jdList: data,
+    totalCount,
+  } = useSelector((state: RootState) => state?.jdReducer);
 
-  // useEffect(() => {
-  //   if (!isLoading && data) {
-  //     // Dispatch setJDList action to append new data
-  //     dispatch(setJDList(data));
-  //   }
-  // }, [data, isLoading, dispatch]);
+  useEffect(() => {
+    dispatch(fetchJdList(pagination));
+  }, [pagination.offset]);
 
   const updatePaginationData = () => {
     setPagination((prev) => ({
@@ -37,8 +35,8 @@ function App() {
   };
 
   const lastRef = lazyLoadOnScroll(
-    data?.totalCount || 0,
-    data?.jdList?.length || 0,
+    totalCount || 0,
+    data?.length || 0,
     isLoading,
     updatePaginationData
   );
@@ -96,7 +94,7 @@ function App() {
   };
 
   const getMainComponent = () => {
-    const filteredData = getFilterData(data?.jdList || []);
+    const filteredData = getFilterData(data || []);
     if (isLoading) {
       return <Loader />;
     }
