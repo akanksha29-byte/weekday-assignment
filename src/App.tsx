@@ -21,6 +21,7 @@ function App() {
     isLoading,
     jdList: data,
     totalCount,
+    error,
   } = useSelector((state: RootState) => state?.jdReducer);
 
   useEffect(() => {
@@ -99,7 +100,7 @@ function App() {
       return <Loader />;
     }
 
-    if (!filteredData?.length) {
+    if (!filteredData?.length || error) {
       return <NoDataFoundComponent />;
     }
     return (
