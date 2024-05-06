@@ -185,3 +185,44 @@
 .text-transform-cap {
   text-transform: capitalize;
 }
+
+/* media query */
+@media screen and (max-width: 900px) {
+  .card-container {
+    flex-basis: 45% !important;
+    height: 600px;
+  }
+
+  .filter-container {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .card-description-container {
+    height: 300px;
+  }
+
+  .select-filter {
+    margin-top: 10px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .card-container {
+    flex-basis: 100% !important;
+    height: 620px;
+  }
+
+  .select-filter {
+    margin-top: 10px;
+  }
+
+  .card-description-container {
+    height: 325px;
+  }
+
+  .filter-container {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+}

@@ -20,7 +20,7 @@ const FilterSection: React.FC<FilterSectionComponentProps> = (props) => {
         id="job-role"
         className="select-filter"
         options={SELECT_JOB_ROLE}
-        sx={{ width: 220 }}
+        sx={{ width: 150 }}
         renderInput={(params) => <TextField {...params} label="Roles" />}
         onInputChange={(event, newInputValue) => {
           const value = SELECT_JOB_ROLE?.find(
@@ -33,7 +33,7 @@ const FilterSection: React.FC<FilterSectionComponentProps> = (props) => {
         disablePortal
         id="experience"
         options={SELECT_EXPERIENCE}
-        sx={{ width: 220 }}
+        sx={{ width: 150 }}
         className="select-filter"
         renderInput={(params) => (
           <TextField {...params} label="Min. Experience" />
@@ -50,7 +50,7 @@ const FilterSection: React.FC<FilterSectionComponentProps> = (props) => {
         id="experience"
         className="select-filter"
         options={SELECT_PAY}
-        sx={{ width: 220 }}
+        sx={{ width: 150 }}
         renderInput={(params) => (
           <TextField {...params} label="Min Base Pay Salary" />
         )}
@@ -66,7 +66,7 @@ const FilterSection: React.FC<FilterSectionComponentProps> = (props) => {
         disablePortal
         id="experience"
         options={SELECT_LOCATION}
-        sx={{ width: 220 }}
+        sx={{ width: 150 }}
         className="select-filter"
         renderInput={(params) => <TextField {...params} label="Location" />}
         onInputChange={(event, newInputValue) => {
@@ -80,7 +80,8 @@ const FilterSection: React.FC<FilterSectionComponentProps> = (props) => {
         id="company-name-input-box"
         label="Company Name"
         variant="outlined"
-        sx={{ width: 220 }}
+        className="select-filter"
+        sx={{ width: 150 }}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
           onSetFilterValue("companyName", event.target.value);
         }}
