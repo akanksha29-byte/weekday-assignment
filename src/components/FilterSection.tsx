@@ -22,7 +22,7 @@ const FilterSection: React.FC<FilterSectionComponentProps> = (props) => {
         options={SELECT_JOB_ROLE}
         sx={{ width: 150 }}
         renderInput={(params) => <TextField {...params} label="Roles" />}
-        onInputChange={(event, newInputValue) => {
+        onInputChange={(_, newInputValue) => {
           const value = SELECT_JOB_ROLE?.find(
             (item) => item?.label === newInputValue
           );
@@ -38,7 +38,7 @@ const FilterSection: React.FC<FilterSectionComponentProps> = (props) => {
         renderInput={(params) => (
           <TextField {...params} label="Min. Experience" />
         )}
-        onInputChange={(event, newInputValue) => {
+        onInputChange={(_, newInputValue) => {
           const value = SELECT_EXPERIENCE?.find(
             (item) => item?.label === newInputValue
           );
@@ -54,7 +54,7 @@ const FilterSection: React.FC<FilterSectionComponentProps> = (props) => {
         renderInput={(params) => (
           <TextField {...params} label="Min Base Pay Salary" />
         )}
-        onInputChange={(event, newInputValue) => {
+        onInputChange={(_, newInputValue) => {
           const value = SELECT_PAY?.find(
             (item) => item?.label === newInputValue
           );
@@ -69,7 +69,7 @@ const FilterSection: React.FC<FilterSectionComponentProps> = (props) => {
         sx={{ width: 150 }}
         className="select-filter"
         renderInput={(params) => <TextField {...params} label="Location" />}
-        onInputChange={(event, newInputValue) => {
+        onInputChange={(_, newInputValue) => {
           const value = SELECT_LOCATION?.find(
             (item) => item?.label === newInputValue
           );

@@ -8,8 +8,8 @@ import { lazyLoadOnScroll } from "./util";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchJdList } from "./store/jdListSlice";
 import { RootState } from "./store";
-import "./App.css";
 import { JDlist } from "./types";
+import "./App.css";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +25,7 @@ function App() {
   } = useSelector((state: RootState) => state?.jdReducer);
 
   useEffect(() => {
+    // @ts-ignore
     dispatch(fetchJdList(pagination));
   }, [pagination.offset]);
 

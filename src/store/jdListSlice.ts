@@ -1,14 +1,9 @@
-import {
-  PayloadAction,
-  createSlice,
-  createAsyncThunk,
-  AsyncThunkPayloadCreator,
-} from "@reduxjs/toolkit";
+import { PayloadAction, createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import {
   InitialState,
   JDListApiResponse,
   FetchJDListRequestPayload,
-} from "../types/index";
+} from "../types";
 
 let initialState: InitialState = {
   jdList: [],
@@ -18,9 +13,12 @@ let initialState: InitialState = {
   success: "",
 };
 
-export const fetchJdList = createAsyncThunk(
+export const fetchJdList = createAsyncThunk<
+  JDListApiResponse, // Return type of the async function
+  FetchJDListRequestPayload // Type of the payload sent in the request
+>(
   "jdListThunk",
-  async (body: AsyncThunkPayloadCreator<FetchJDListRequestPayload>) => {
+  async (body: FetchJDListRequestPayload, { rejectWithValue }) => {
     try {
       const response = await fetch(
         `https://api.weekday.technology/adhoc/getSampleJdJSON`,
@@ -33,12 +31,15 @@ export const fetchJdList = createAsyncThunk(
         }
       );
 
+      if (!response.ok) {
+        // Handle non-successful response
+        return rejectWithValue("Failed to fetch JD list");
+      }
+
       return response.json();
     } catch (error) {
-      return {
-        jdList: [],
-        totalCount: 0,
-      };
+      // Handle fetch error
+      return rejectWithValue("Failed to fetch JD list");
     }
   }
 );
